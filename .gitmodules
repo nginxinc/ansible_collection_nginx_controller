@@ -1,3 +1,6 @@
 [submodule "roles/nginx_controller_install"]
 	path = roles/nginx_controller_install
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-install
+[submodule "roles/nginx_controller_license"]
+	path = roles/nginx_controller_license
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-license

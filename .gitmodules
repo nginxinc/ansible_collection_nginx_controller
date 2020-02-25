@@ -7,3 +7,6 @@
 [submodule "roles/nginx_controller_generate_token"]
 	path = roles/nginx_controller_generate_token
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-generate-token
+[submodule "roles/nginx_controller_agent"]
+	path = roles/nginx_controller_agent
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-agent

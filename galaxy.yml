@@ -16,6 +16,6 @@ tags:
 - nginx-plus
 
 description: Supporting NGINX Controller 3.x and later in your pipelines.
-repository: http://example.com/repository
+repository: https://github.com/nginxinc/ansible-collection-nginx_controller
 documentation: https://docs.nginx.com/nginx-controller/
-issues: http://example.com/issue/tracker
+issues: https://github.com/nginxinc/ansible-collection-nginx_controller/issues

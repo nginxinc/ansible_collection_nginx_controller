@@ -16,3 +16,6 @@
 [submodule "roles/nginx_controller_gateway"]
 	path = roles/nginx_controller_gateway
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-gateway
+[submodule "roles/nginx_controller_component"]
+	path = roles/nginx_controller_component
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-component

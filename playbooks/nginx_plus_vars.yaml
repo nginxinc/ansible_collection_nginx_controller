@@ -1,0 +1,13 @@
+---
+nginx_enable: true
+nginx_start: true
+nginx_type: plus
+nginx_delete_license: true
+nginx_license: # this is the Ansible host location to copy out
+  certificate: "{{playbook_dir}}/license/nginx-repo.crt"
+  key: "{{playbook_dir}}/license/nginx-repo.key"
+nginx_rest_api_enable: true
+nginx_rest_api_write: true
+nginx_rest_api_port: 8080
+nginx_modules:
+  njs: true

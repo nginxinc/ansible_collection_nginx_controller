@@ -1,0 +1,24 @@
+# ansible-playbook nginx_controller_certificate.yaml -e "user_email=brian@itproctology.com user_password=36x4esg8 controller_fqdn=ip-10-1-10-25.us-east-2.compute.internal" 
+# ansible-playbook nginx_controller_certificate.yaml -e "@nginx_install_controller_vars.yaml"
+
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - include_role:
+      name: nginx_controller_generate_token
+
+  - name: create the certificate object
+    include_role:
+      name: nginx_controller_certificate
+    vars:
+      environment_name: "production-us-west"
+      certificate_name: "star.acmefinancial.net"
+      certificate_displayname: "Root WWW Cert"
+      certificate_description: "A complete sentence"
+      certificate_privateKey: '-----BEGIN RSA PRIVATE KEY-----\---<snip>---3vN\nlDlL0NukcNOukmc7UfeqBh0Y2EC7hFHlUB403yz50C1tvCQOnJPx\n-----END RSA PRIVATE KEY-----'
+      certificate_publicCert: '-----BEGIN CERTIFICATE-----\nMIIDvT---<snip>---cm1lZGlhdGUgQ0ExJjAkBgkqhkiG\n9w0BCQEWF2VtYWlsQGFjbWVmaW5hbmNpYWwubmV0MB4XDTIwMDExNTAxMDEzM1oX\nDTI1MDExMzAxMDEzM1owgZIxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApXYXNoaW5n\ndG9uMRAwDgYDVQQHDAdTZWF0dGxlMRcwFQYDVQQKDA5BY21lIEZpbmFuY2lhbDEc\nMBoGA1UEAwwTKi5hY21lZmluYW5jaWFsLm5ldDElMCMGCSqGSIb3DQEJARYWc3Rh\nckBhY21lZmluYW5jaWFsLm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC\nggEBAJc8E1ZEXqkRgLDSpHMYmuU4iuzfE1Y0C7eNP0fzpnSgnFD8/H9cRmz/dNsX\nQ9fbfVdiXoVpGIPs1dJpNM2vABhuptCSi9mlOV+Ky42QygOlIts/9UN1P7WEKUbk\nuA0wEWg2PmQjF7lwNmD9HiYAYOndV2fX1rzhs8aCN6dYPklnVSTvNzU7urt8FMDj\nCL/y/wQl8KkpyNtOD0qcP3GBUfqv7smBpoKzdH/kZov4m8WI7B1ZNEEWUoL4NQfw\nHowbZ60M/LxTWddkOPc9K7Tpu53UBEg8dony/WQqJc9DBk8J2lrYk8i7O0dz2G1Y\n72p4aiHjXNAL4d/3FN4OIZr6QZ0CAwEAAaMiMCAwHgYDVR0RBBcwFYITKi5hY21l\nZmluYW5jaWFsLm5ldDANBgkqhkiG9w0BAQsFAAOCAQEAskhNiWUAWuHEdUZCpBk0\nY9gER7d93HP8leF7sNFMvjOyQgWrgnTqjOf+Y9JdkbMps/0MuOOXld3keeC+OT8l\nPUfz5Jjg5a3ndn0dv7aHZvc5RWyK1ofvkEhI49v8xNfgUtVixh2Pgbl7KXBGOLo7\nOWLP8Tfsz6bJFbpAMj8vSTXCh8slEJ+egm084UaB2rV3zFfsAiFN7nfer3w1Ydrp\ngSakfnfRtqL+LmREVVt5lhV0GEUb0MMvtiaz4LeDzg5rNym4KK0V8pJRfB7r2B4b\nHSxfwABO+g/IynATvPyGItHR53HqdqEFawHIhBFvkTRqyk+pyKoXkY9Z9Ad+NIm1\nZA==\n-----END CERTIFICATE-----'
+      ca_certificates: 
+      - '-----BEGIN CERTIFICATE-----\nMIID3DCCAsSgAwIBAgIBADA---<snip>---tRz7FoQxGuLmdTqAef/JFlRvZsI=\n-----END CERTIFICATE-----'
+      - '-----BEGIN CERTIFICATE-----\nMIIDwjCCAqqgAwIBAgIJAK3---<snip>---JuoNfF5MLMyQC\nI+6MfrCB\n-----END CERTIFICATE-----'
+      certificate_type: "PEM"

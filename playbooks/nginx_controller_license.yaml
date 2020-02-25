@@ -1,0 +1,18 @@
+# ansible-playbook nginx_controller_license.yaml -i controller -e "admin_email=user@company.com admin_password=userPassword" 
+# ansible-playbook nginx_controller_license.yaml -e "@nginx_install_controller_vars.yaml"
+
+- hosts: localhost
+  gather_facts: no
+
+  vars:
+    # base64 encoded, one line, no line endings or carrage returns
+    license: "{{ lookup('file', 'license/controller_license.base64.txt') }}"
+
+  tasks:
+  ## Generate Controller token
+  - include_role:
+      name: nginx_controller_generate_token
+
+  ## Upload and test license
+  - include_role:
+      name: nginx_controller_license

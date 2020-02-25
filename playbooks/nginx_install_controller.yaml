@@ -1,0 +1,200 @@
+---
+## retreive dynamic settings information at the Ansible Controller
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+  - name: generate password hash # https://askubuntu.com/questions/982804/mkpasswd-m-sha-512-produces-incorrect-login
+    expect:
+      echo: yes
+      command: /bin/bash -c "mkpasswd --method=sha-512 | sed 's/\$/\\$/g'"
+      responses:
+        (?i)password: "{{su_password}}"
+    register: password_hash
+
+## on the remote host
+- hosts: controller
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+
+  tasks:
+  - name: load the vars
+    include_vars: 
+      file: "{{playbook_dir}}/nginx_install_controller_vars.yaml"
+
+  - name:  make sure all the prerequisites are present
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+      # - awk
+      - bash
+      # - cat
+      - curl
+      # - dirname
+      # - envsubst
+      - jq
+      # - getent
+      - grep
+      # - head
+      # - id
+      - less
+      # - mkdir
+      # - ps
+      # - rev
+      - sed
+      # - sort
+      - tar
+      # - tee
+      # - whoami
+      - python-pexpect  # to support ansible
+    tags: packages
+
+  # add the docker repo
+  - name: Import docker CE repository key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: add Docker ce repository
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+      state: present
+
+  - name: update the apt cache
+    apt: 
+      update_cache: yes
+
+  - name: list versions available
+    shell: apt-cache show docker-ce
+    register: docker_versions
+
+  - name: install docker community edition
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+      - docker-ce=5:18.09.9~3-0~ubuntu-bionic  # kubeadm version requirement
+
+  - name: setup docker daemon
+    copy:
+      src: "{{playbook_dir}}/docker_daemon.json"
+      dest: /etc/docker/daemon.json
+
+  # https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+  - name: Remove swapfile from /etc/fstab
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+    with_items:
+      - swap
+      - none
+
+  - name: Disable swap
+    command: swapoff -a
+
+  - name: restart docker daemon
+    service: 
+      name: docker
+      state: restarted
+
+  # install kubernetes dependencies for Controller 2.8+
+  - name: Add an apt signing key for Kubernetes
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+
+  - name: Adding apt repository for Kubernetes
+    apt_repository:
+      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: 'kubernetes'
+
+  - name: Install Kubernetes binaries
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - kubelet=1.15.5-00
+        - kubeadm=1.15.5-00
+        - kubectl=1.15.5-00
+
+  # setting up the master node
+  - name: set node_ip from ansible_facts
+    set_fact:
+      node_ip: "{{ansible_facts.default_ipv4.address}}"
+
+  - debug:
+      var: node_ip 
+
+  - name: Configure node ip
+    lineinfile:
+      path: /etc/default/kubelet
+      line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+      create: yes
+
+  - name: Restart kubelet
+    service:
+      name: kubelet
+      daemon_reload: yes
+      state: restarted
+
+  - name: ensure kubelet running
+    service:
+      name: kubelet
+      state: started
+
+  ## Stop here with setting up K8s.  The Controller installer will take care of the rest after this for a working demo environment.
+
+  # supporting su requirement for Controller installer role
+  - name: set root password to support su
+    user: 
+      name: root 
+      password: hostvars['localhost']['password_hash'].stdout_lines[1]
+
+  - name: copy the controller package
+    copy:
+      src: "{{playbook_dir}}/{{controller_tarball}}"
+      dest: "/home/ubuntu/{{controller_tarball}}"
+      owner: ubuntu
+      group: ubuntu
+      force: yes
+
+## changing security context on the remote host to su
+- name: install controller
+  remote_user: ubuntu
+  hosts: controller
+  become: yes
+  become_user: ubuntu
+  become_method: su
+  gather_facts: false
+
+  pre_tasks:
+  - name: load the vars
+    include_vars: 
+      file: "{{playbook_dir}}/nginx_install_controller_vars.yaml"
+
+  roles:
+    - nginx_controller_install
+        
+# pull the install log
+- hosts: controller
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  gather_facts: false
+
+  tasks:
+  - name: fetch the install log
+    fetch:
+      src: /var/log/nginx-controller/nginx-controller-install.log
+      dest: "{{playbook_dir}}/logs/"

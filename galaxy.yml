@@ -8,7 +8,7 @@ authors:
 - brianehlert
 dependencies: {}
 license:
-- Apache-2.0-or-later
+- Apache-2.0
 tags:
 - nginx
 - controller

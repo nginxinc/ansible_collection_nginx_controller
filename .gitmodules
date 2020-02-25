@@ -4,3 +4,6 @@
 [submodule "roles/nginx_controller_license"]
 	path = roles/nginx_controller_license
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-license
+[submodule "roles/nginx_controller_generate_token"]
+	path = roles/nginx_controller_generate_token
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-generate-token

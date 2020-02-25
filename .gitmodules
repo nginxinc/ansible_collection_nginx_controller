@@ -13,3 +13,6 @@
 [submodule "roles/nginx_controller_certificate"]
 	path = roles/nginx_controller_certificate
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-certificate
+[submodule "roles/nginx_controller_gateway"]
+	path = roles/nginx_controller_gateway
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-gateway

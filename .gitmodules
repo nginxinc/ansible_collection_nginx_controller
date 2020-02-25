@@ -10,3 +10,6 @@
 [submodule "roles/nginx_controller_agent"]
 	path = roles/nginx_controller_agent
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-agent
+[submodule "roles/nginx_controller_certificate"]
+	path = roles/nginx_controller_certificate
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-certificate

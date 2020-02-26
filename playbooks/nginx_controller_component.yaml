@@ -6,11 +6,11 @@
 
   tasks:
   - include_role:
-      name: nginx_controller_generate_token
+      name: nginxinc.nginx_controller_generate_token
 
   - name: configure the component
     include_role:
-      name: nginx_controller_component
+      name: nginxinc.nginx_controller_component
     vars:
       # controller_fqdn:
       appName: "testapp"
@@ -43,14 +43,6 @@
                     failTimeout: 10s
                 loadBalancingMethod: 
                   type: ROUND_ROBIN
-              group2:
-                uris:
-                  "http://10.1.10.12:8121":
-                    {} # use defaults
-                  "http://10.1.10.11:5821":
-                    {} # use defaults
-                  "http://10.1.10.12:5821":
-                    {} # use defaults
             monitoring:
               response:
                 status:

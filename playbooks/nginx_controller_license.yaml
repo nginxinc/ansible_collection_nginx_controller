@@ -11,8 +11,8 @@
   tasks:
   ## Generate Controller token
   - include_role:
-      name: nginx_controller_generate_token
+      name: nginxinc.nginx_controller_generate_token
 
   ## Upload and test license
   - include_role:
-      name: nginx_controller_license
+      name: nginxinc.nginx_controller_license

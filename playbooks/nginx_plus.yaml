@@ -13,6 +13,6 @@
       file: "{{playbook_dir}}/nginx_plus_vars.yaml"
 
   roles:
-    - nginx
+    - nginxinc.nginx
 
 

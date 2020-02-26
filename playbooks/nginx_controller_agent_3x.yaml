@@ -19,7 +19,7 @@
       - libxerces-c3.2
 
   - include_role:
-      name: nginx_controller_generate_token
+      name: nginxinc.nginx_controller_generate_token
 
   - name: Get controller api key for agent registration
     uri:
@@ -38,4 +38,4 @@
 
   - name: install the agent
     include_role:
-      name: nginx_controller_agent
+      name: nginxinc.nginx_controller_agent

@@ -184,7 +184,7 @@
       file: "{{playbook_dir}}/nginx_install_controller_vars.yaml"
 
   roles:
-    - nginx_controller_install
+    - nginxinc.nginx_controller_install
         
 # pull the install log
 - hosts: controller

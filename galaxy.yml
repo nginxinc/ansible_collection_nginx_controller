@@ -2,7 +2,7 @@
 
 namespace: nginxinc
 name: nginx_controller
-version: 0.3.1.2
+version: 0.3.1-2
 readme: README.md
 authors:
 - brianehlert

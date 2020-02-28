@@ -1,4 +1,4 @@
-# ansible-playbook nginx_controller_certificate.yaml -e "user_email=brian@itproctology.com user_password=36x4esg8 controller_fqdn=ip-10-1-10-25.us-east-2.compute.internal" 
+# ansible-playbook nginx_controller_certificate.yaml -e "user_email=brian@itproctology.com user_password=notsecure controller_fqdn=controller.example.local" 
 # ansible-playbook nginx_controller_certificate.yaml -e "@nginx_install_controller_vars.yaml"
 
 - hosts: localhost

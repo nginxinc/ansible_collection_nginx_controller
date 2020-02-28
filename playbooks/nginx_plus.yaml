@@ -1,8 +1,4 @@
 ---
-# # for some reason this does not work with the Jinja template
-- hosts: localhost
-
-  tasks:
 - hosts: loadbalancers
   remote_user: ubuntu
   become: true

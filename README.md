@@ -36,17 +36,21 @@ Then you can use the roles from the collection in your playbooks / plays:
 
     - role: nginx_controller_generate_token
         vars:
-        controller_fqdn: controller.example.local
-        user_email: user@example.local
-        user_password: Secur3P@ssw0rd
+          controller:
+            fqdn: controller.example.local
+            user_email: user@example.local
+            user_password: Secur3P@ssw0rd
 
     - role: nginx_controller_agent
         vars:
-        controller_fqdn: controller.example.local
+          controller:
+            fqdn: controller.example.local
 ```
 
 > It is possible to be more explicit. For example a fully-qualified role name such as `nginxinc.nginx_controller.nginx` instead of `nginx` is helpful if you maintain a different `nginx` role on your local workstation at a different local path.
 
 ## Author
 
-brianehlert
+[Brian Ehlert](https://github.com/brianehlert)
+
+[Daniel Edgar](https://github.com/aknot242)

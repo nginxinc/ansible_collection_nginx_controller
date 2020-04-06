@@ -1,0 +1,15 @@
+# filepath test note
+
+# roles/nginx/molecule/
+# roles/nginx_controller_agent/molecule
+# roles/nginx_controller_certificate/molecule
+# roles/nginx_controller_component/molecule
+# roles/nginx_controller_gateway/molecule
+# roles/nginx_controller_generate_token/molecule
+# roles/nginx_controller_install/molecule
+# roles/nginx_controller_license/molecule
+
+# compile --python 2.6
+# future-import-boilerplate
+# metaclass-boilerplate
+# pep8

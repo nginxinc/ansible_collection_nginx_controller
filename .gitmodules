@@ -3,22 +3,22 @@
 	url = https://github.com/nginxinc/ansible-role-nginx-controller-install
 [submodule "roles/nginx_controller_license"]
 	path = roles/nginx_controller_license
-	url = https://github.com/aknot242/ansible-role-nginx-controller-license
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-license
 [submodule "roles/nginx_controller_generate_token"]
 	path = roles/nginx_controller_generate_token
-	url = https://github.com/aknot242/ansible-role-nginx-controller-generate-token
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-generate-token
 [submodule "roles/nginx_controller_agent"]
 	path = roles/nginx_controller_agent
-	url = https://github.com/aknot242/ansible-role-nginx-controller-agent
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-agent
 [submodule "roles/nginx_controller_certificate"]
 	path = roles/nginx_controller_certificate
-	url = https://github.com/aknot242/ansible-role-nginx-controller-certificate
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-certificate
 [submodule "roles/nginx_controller_gateway"]
 	path = roles/nginx_controller_gateway
-	url = https://github.com/aknot242/ansible-role-nginx-controller-gateway
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-gateway
 [submodule "roles/nginx_controller_component"]
 	path = roles/nginx_controller_component
-	url = https://github.com/aknot242/ansible-role-nginx-controller-component
+	url = https://github.com/nginxinc/ansible-role-nginx-controller-component
 [submodule "roles/nginx"]
 	path = roles/nginx
 	url = https://github.com/nginxinc/ansible-role-nginx

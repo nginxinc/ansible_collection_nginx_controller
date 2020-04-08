@@ -1,4 +1,4 @@
-# ansible-playbook nginx_controller_gateway.yaml -e "user_email=brian@example.com user_password=notsecure controller_fqdn=controller.example.local" 
+# ansible-playbook nginx_controller_gateway.yaml -e '{"controller":{ "user_email":"user@company.com","user_password":"notsecure", "fqdn": "controller.example.local", "validate_certs":false }}' 
 # ansible-playbook nginx_controller_gateway.yaml -e "@nginx_controller_gateway_vars.yaml"
 
 - hosts: localhost
@@ -12,7 +12,6 @@
     include_role:
       name: nginxinc.nginx_controller_gateway
     vars:
-        controller_fqdn: "controller.example.local"
         environment_name: "production-us-west"
         gateway:
           metadata:

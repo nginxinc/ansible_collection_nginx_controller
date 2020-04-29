@@ -1,0 +1,22 @@
+# ansible-playbook nginx_controller_application.yaml -e "nginx_controller_user_email=brian@example.com nginx_controller_user_password=notsecure nginx_controller_fqdn=controller.example.local" 
+# ansible-playbook nginx_controller_application.yaml -e "@nginx_controller_application_vars.yaml"
+
+- hosts: localhost
+  gather_facts: no
+  collections:
+  - nginxinc.nginx_controller
+
+  tasks:
+  - include_role: 
+      name: nginx_controller_generate_token
+
+  - name: configure the component
+    include_role:
+      name: nginx_controller_application
+    vars:
+      nginx_controller_environmentName: "production-us-west"
+      nginx_controller_app:
+        metadata:
+          name: "lending.acmefinancial.net"
+          displayName: "lending.ACMEFinancial.net"
+          description: "Core lending Application"

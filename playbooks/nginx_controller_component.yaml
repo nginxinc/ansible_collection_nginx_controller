@@ -1,22 +1,24 @@
-# ansible-playbook nginx_controller_component.yaml -e '{"controller":{ "user_email":"user@company.com","user_password":"notsecure", "fqdn": "controller.example.local", "validate_certs":false }}' 
+# ansible-playbook nginx_controller_component.yaml -e "nginx_controller_user_email=brian@example.com nginx_controller_user_password=notsecure nginx_controller_fqdn=controller.example.local" 
 # ansible-playbook nginx_controller_component.yaml -e "@nginx_controller_component_vars.yaml"
 
 - hosts: localhost
   gather_facts: no
+  collections:
+  - nginxinc.nginx_controller
 
   tasks:
   - include_role:
-      name: nginxinc.nginx_controller_generate_token
+      name: nginx_controller_generate_token
 
   - name: configure the component
     include_role:
-      name: nginxinc.nginx_controller_component
+      name: nginx_controller_component
     vars:
-      appName: "testapp"
-      environmentName: "production-us-west"
-      component:
+      nginx_controller_appName: "lending.acmefinancial.net"
+      nginx_controller_environmentName: "production-us-west"
+      nginx_controller_component:
         metadata: 
-          name: lending
+          name: core-lending
           displayName: "Shared Public Lending BU Gateway"
           description: "Routes all non special Lending applications"
         desiredState:  

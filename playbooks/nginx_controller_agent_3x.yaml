@@ -1,5 +1,5 @@
 ---
-# ansible-playbook nginx_controller_agent_3x.yaml -i loadbalancers -e '{"controller":{ "user_email":"user@company.com","user_password":"notsecure", "fqdn": "controller.example.local", "validate_certs":false }}'
+# ansible-playbook nginx_controller_agent.yaml -i loadbalancers -e "nginx_controller_user_email=user@company.com nginx_controller_user_password=userPassword nginx_controller_fqdn=mycontroller.local" 
 # ansible-playbook nginx_controller_agent_3x.yaml -e "@nginx_install_controller_vars.yaml"
 
 - hosts: loadbalancers
@@ -7,8 +7,15 @@
   become: true
   become_method: sudo
   gather_facts: yes
+  vars_files:
+    - nginx_install_controller_vars.yaml
 
   tasks:
+  # - name: upgrade packages here.
+  #   apt:
+  #     update_cache: yes
+  #     upgrade: yes
+
   - name: install minimal support for python2 for Agent install script
     apt:
       name: "{{ packages }}"
@@ -23,19 +30,20 @@
 
   - name: Get controller api key for agent registration
     uri:
-      url: "https://{{ controller.fqdn }}/api/v1/platform/global"
+      url: "https://{{nginx_controller_fqdn}}/api/v1/platform/global"
       method: "GET"
       return_content: yes
       status_code: 200
-      validate_certs: "{{ controller.validate_certs | default(false) }}"
+      validate_certs: false
       headers:
-        Cookie: "{{ controller.auth_token }}"
+        Cookie: "{{nginx_controller_auth_token}}"
     register: ctrl_globals
 
   - name: Copy api_key to a variable
     set_fact:
-      api_key: "{{ ctrl_globals.json.currentStatus.agentSettings.apiKey }}"
+      nginx_controller_api_key: "{{ctrl_globals.json.currentStatus.agentSettings.apiKey}}"
 
   - name: install the agent
     include_role:
       name: nginxinc.nginx_controller_agent
+

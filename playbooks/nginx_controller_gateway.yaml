@@ -1,19 +1,22 @@
-# ansible-playbook nginx_controller_gateway.yaml -e '{"controller":{ "user_email":"user@company.com","user_password":"notsecure", "fqdn": "controller.example.local", "validate_certs":false }}' 
+# ansible-playbook nginx_controller_gateway.yaml -e "nginx_controller_user_email=brian@example.com nginx_controller_user_password=notsecure nginx_controller_fqdn=controller.example.local" 
 # ansible-playbook nginx_controller_gateway.yaml -e "@nginx_controller_gateway_vars.yaml"
 
 - hosts: localhost
   gather_facts: no
+  collections:
+  - nginxinc.nginx_controller
 
   tasks:
   - include_role:
-      name: nginxinc.nginx_controller_generate_token
+      name: nginx_controller_generate_token
 
   - name: configure the gateway
     include_role:
-      name: nginxinc.nginx_controller_gateway
+      name: nginx_controller_gateway
     vars:
-        environment_name: "production-us-west"
-        gateway:
+        nginx_controller_fqdn: "controller.example.local"
+        nginx_controller_environmentName: "production-us-west"
+        nginx_controller_gateway:
           metadata:
             name: lending
             displayName: "Shared Public Lending BU Gateway"
@@ -27,10 +30,10 @@
                 "https://ratecalculator.acmefinancial.net": {}
               tls:
                 certRef:
-                  ref: "/services/environments/lending-prod/certs/star.acmefinancial.net"
+                  ref: "/services/environments/production-us-west/certs/star.acmefinancial.net"
                 protocols:
                   - "TLSv1.3"
                   - "TLSv1.2"
               placement:
                 instanceRefs:
-                  - ref: "/infrastructure/locations/unspecified/instances/6"
+                  - ref: "/infrastructure/locations/unspecified/instances/2"

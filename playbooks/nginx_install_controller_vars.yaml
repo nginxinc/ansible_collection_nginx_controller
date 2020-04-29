@@ -1,0 +1,27 @@
+---
+su_password: ''
+nginx_controller_tarball: "/home/ubuntu/{{controller_tarball}}"
+nginx_controller_install_path: /home/ubuntu
+nginx_controller_remote_source: yes
+nginx_controller_db_host: ""
+nginx_controller_db_port: "5432"
+nginx_controller_db_user: "naas"
+nginx_controller_db_password: ''  # issue with special characters
+nginx_controller_tsdb_volume_type: "local"
+nginx_controller_smtp_host: "localhost"
+nginx_controller_smtp_port: "25"
+nginx_controller_smtp_authentication: false
+nginx_controller_smtp_use_tls: false
+nginx_controller_noreply_address: ""
+nginx_controller_fqdn: ""
+nginx_controller_organization_name: ""
+nginx_controller_admin_firstname: ""
+nginx_controller_admin_lastname: ""
+nginx_controller_admin_email: ""
+nginx_controller_admin_password: ''
+nginx_controller_self_signed_cert: true
+nginx_controller_overwrite_existing_configs: true
+nginx_controller_auto_install_docker: false
+controller_tarball: "controller-installer-3.4.0.tar.gz"
+
+ansible_python_interpreter: /usr/bin/python3

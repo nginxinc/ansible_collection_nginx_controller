@@ -25,3 +25,6 @@
 [submodule "nginx_controller_application"]
 	path = nginx_controller_application
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_application
+[submodule "roles/nginx_controller_application"]
+	path = roles/nginx_controller_application
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_application

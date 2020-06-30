@@ -14,6 +14,7 @@ It includes:
 - [nginxinc.nginx_controller_component](https://galaxy.ansible.com/nginxinc/nginx_controller_component)
 - [nginxinc.nginx_controller_location](https://github.com/nginxinc/ansible-role-nginx_controller_location)
 - [nginxinc.nginx_controller_environment](https://github.com/nginxinc/ansible-role-nginx_controller_environment)
+- [nginxinc.nginx.controller_user](https://github.com/nginxinc/ansible-role-nginx_controller_user)
 - [nginxinc.nginx](https://galaxy.ansible.com/nginxinc/nginx)
 
 ## Use guidelines

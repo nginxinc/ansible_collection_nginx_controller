@@ -31,3 +31,9 @@
 [submodule "roles/nginx_controller_environment"]
 	path = roles/nginx_controller_environment
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_environment
+[submodule "nginx_controller_user"]
+	path = nginx_controller_user
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_user
+[submodule "roles/nginx_controller_user"]
+	path = roles/nginx_controller_user
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_user

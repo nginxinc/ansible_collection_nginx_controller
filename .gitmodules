@@ -37,3 +37,6 @@
 [submodule "roles/nginx_controller_user"]
 	path = roles/nginx_controller_user
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_user
+[submodule "roles/nginx_controller_user_role"]
+	path = roles/nginx_controller_user_role
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_user_role

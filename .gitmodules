@@ -40,3 +40,9 @@
 [submodule "roles/nginx_controller_user_role"]
 	path = roles/nginx_controller_user_role
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_user_role
+[submodule "roles/nginx_controller_integration"]
+	path = roles/nginx_controller_integration
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_integration
+[submodule "roles/nginx_controller_forwarder"]
+	path = roles/nginx_controller_forwarder
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_forwarder

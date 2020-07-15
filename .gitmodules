@@ -46,3 +46,6 @@
 [submodule "roles/nginx_controller_forwarder"]
 	path = roles/nginx_controller_forwarder
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_forwarder
+[submodule "roles/nginx_controller_api_definition_import"]
+	path = roles/nginx_controller_api_definition_import
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_api_definition_import

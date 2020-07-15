@@ -18,6 +18,7 @@ It includes:
 - [nginxinc.nginx_controller_user_role](https://github.com/nginxinc/ansible-role-nginx_controller_user_role)
 - [nginxinc.nginx_controller_integration](https://github.com/nginxinc/ansible-role-nginx_controller_integration)
 - [nginxinc.nginx_controller_forwarder](https://github.com/nginxinc/ansible-role-nginx_controller_forwarder)
+- [nginxinc.nginx_controller_api-definition_import](https://github.com/nginxinc/ansible-role-nginx_controller_api_definition_import)
 - [nginxinc.nginx](https://galaxy.ansible.com/nginxinc/nginx)
 
 ## Use guidelines

@@ -49,3 +49,6 @@
 [submodule "roles/nginx_controller_api_definition_import"]
 	path = roles/nginx_controller_api_definition_import
 	url = https://github.com/nginxinc/ansible-role-nginx_controller_api_definition_import
+[submodule "roles/nginx_controller_publish_api"]
+	path = roles/nginx_controller_publish_api
+	url = https://github.com/nginxinc/ansible-role-nginx_controller_publish_api

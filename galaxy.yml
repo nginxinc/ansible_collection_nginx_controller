@@ -16,6 +16,10 @@ tags:
 - plus
 - tools
 - infrastructure
+- cloud
+- linux
+- security
+- monitoring
 
 description: Supporting NGINX Controller 3.x and later in your pipelines.
 repository: https://github.com/nginxinc/ansible-collection-nginx_controller

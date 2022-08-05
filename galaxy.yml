@@ -2,7 +2,7 @@
 
 namespace: nginxinc
 name: nginx_controller
-version: 3.9.0
+version: 3.10.0
 readme: README.md
 authors:
 - brianehlert
@@ -21,7 +21,7 @@ tags:
 - security
 - monitoring
 
-description: Supporting NGINX Controller 3.x and later in your pipelines.
+description: Supporting NGINX Controller 3.x in your pipelines.
 repository: https://github.com/nginxinc/ansible-collection-nginx_controller
 documentation: https://docs.nginx.com/nginx-controller/
 issues: https://github.com/nginxinc/ansible-collection-nginx_controller/issues

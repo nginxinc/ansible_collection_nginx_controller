@@ -1,5 +1,7 @@
 # Ansible Collection - nginx.nginx_controller
 
+# This repository has been archived. There will likely be no further development on the project and security vulnerabilities may be unaddressed. #
+
 This collection contains all the roles maintained to support NGINX Controller 3.0 and later. The collection can be found on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx_controller).
 
 It includes:
